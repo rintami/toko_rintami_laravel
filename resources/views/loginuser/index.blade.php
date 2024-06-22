@@ -41,22 +41,10 @@
           </form>
           <form action="#" class="signup">
             <div class="field">
-              <input type="text" placeholder="Email Address" required>
+              <input type="text" placeholder="Masukkan Nama Lengkap" required>
             </div>
             <div class="field">
-              <input type="password" placeholder="Password" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Password" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Password" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Password" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Password" required>
+              <input type="text" placeholder="Masukkan Email" required>
             </div>
             <div class="field">
               <input type="password" placeholder="Confirm password" required>
