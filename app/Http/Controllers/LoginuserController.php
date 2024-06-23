@@ -34,16 +34,22 @@ class LoginuserController extends Controller
         //dd($data->user_id);
 
         $data = Pelanggan::where('email', $request->email)->first();
+
         if ($data) {
-            if ($request->pwd == $data->pwd) {
+            if (md5($request->pwd) == ($data->pwd)) {
                 session::put('email',$data->email);
                 session::put('status',$data->status);
                 session(['berhasil_login'=> true]);
                 return redirect('/');
             }
-        }
-        Alert::warning('Ups!', 'Data yang Anda Masukkan Salah!');
+            else {
+                Alert::warning('Ups!', 'Password yang Anda Masukkan Salah!');
+                return view('loginuser.index');
+            }
+        } else {
+        Alert::warning('Ups!', 'Email tidak ditemukan!');
         return view('loginuser.index');
+        }
     }
 
     public function logoutuser(Request $request){
@@ -70,7 +76,31 @@ class LoginuserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'nama' => 'required',
+            'jkel' => 'required',
+            'telepon' => 'required',
+            'email' => 'required',
+            'alamat' => 'required',
+            'kota' => 'required',
+            'status' => 'required',
+            'pwd' => 'required',
+        ]);
+
+        $pelanggan = Pelanggan::create([
+            'nama' => $request->nama,
+            'jkel' => $request->jkel,
+            'telepon' => $request->telepon,
+            'email' => $request->email,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'status' => $request->status,
+            'pwd' => md5($request->pwd),
+        ]);
+
+        Alert::success('Register Berhasil!', 'Silahkan Login Untuk Masuk Ke Halaman!');
+        return redirect()->route('loginuser.index');
     }
 
     /**

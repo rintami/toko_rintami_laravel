@@ -23,7 +23,7 @@ class CreateKaryawansTable extends Migration
             $table->string('kota', 30);
             $table->string('jabatan', 100);
             $table->integer('gaji', 11)->autoIncrement(false);
-            $table->string('pwd', 50);
+            $table->string('pwd', 150);
             $table->timestamps();
         });
     }

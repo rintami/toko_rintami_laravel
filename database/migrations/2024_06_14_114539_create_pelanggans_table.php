@@ -22,7 +22,7 @@ class CreatePelanggansTable extends Migration
             $table->string('alamat', 100);
             $table->string('kota', 30);
             $table->string('status', 30);
-            $table->string('pwd', 50);
+            $table->string('pwd', 150);
             $table->timestamps();
         });
     }

@@ -30,25 +30,45 @@
               <input type="text" name="email" placeholder="Masukkan Email" required>
             </div>
             <div class="field">
-              <input type="password" name="password" placeholder="Masukkan Password" required>
+              <input type="text" name="password" placeholder="Masukkan Password" required>
             </div>
             <div class="pass-link"><a href="#">Forgot password?</a></div>
             <div class="field btn">
               <div class="btn-layer"></div>
-              <button type="submit" value="Login">
+              <input type="submit" value="Login">
             </div>
             <div class="signup-link">Not a member? <a href="">Signup now</a></div>
           </form>
-          <form action="#" class="signup">
+
+
+          <form action="{{ route('loginuser.store') }}" method="POST" class="signup">
+            @csrf
             <div class="field">
-              <input type="text" placeholder="Masukkan Nama Lengkap" required>
+              <input type="text" placeholder="Masukkan Nama Lengkap" name="nama" required>
             </div>
             <div class="field">
-              <input type="text" placeholder="Masukkan Email" required>
+              <input type="email" placeholder="Masukkan Email" name="email" required>
             </div>
             <div class="field">
-              <input type="password" placeholder="Confirm password" required>
+              <select name="jkel" id="" required>
+                <option value="">--Pilih Jenis Kelamin--</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
             </div>
+            <div class="field">
+              <input type="number" placeholder="Masukkan No.Telepon" name="telepon" required>
+            </div>
+            <div class="field">
+              <textarea name="alamat" id="" cols="30" rows="10" placeholder="Masukkan Alamat"></textarea>
+            </div>
+            <div class="field">
+              <input type="text" placeholder="Masukkan Kota" name="kota" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Masukkan Password" name="pwd" required>
+            </div>
+            <input type="text" name="status" value="Pelanggan" hidden>
             <div class="field btn">
               <div class="btn-layer"></div>
               <input type="submit" value="Signup">

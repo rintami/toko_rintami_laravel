@@ -42,7 +42,7 @@
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
-			{{-- <div class="top-bar">
+			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
 						Belanja Product Kecantikan di Toko Resminya! 100% BPOM
@@ -66,7 +66,7 @@
 						</a>
 					</div>
 				</div>
-			</div> --}}
+			</div>
 
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop container">
@@ -96,6 +96,11 @@
 							</li>
 							<li class="@yield('contact')">
 								<a href="contact">Contact</a>
+							</li>
+							<li>
+								<p>{{Session::get('email')}}
+									{{Session::get('jkel')}}
+								</p>
 							</li>
 						</ul>
 					</div>	
