@@ -13,6 +13,6 @@ class Checkout extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'kodeproduk', 'kodepelanggan', 'jumlah', 'totalharga', 'tanggal', 'metodebayar', 'status', 'buktif'
+        'kodeproduk', 'kodepelanggan', 'jumlah', 'harga', 'totalharga', 'tanggal', 'metodebayar', 'status', 'buktif'
     ];
 }

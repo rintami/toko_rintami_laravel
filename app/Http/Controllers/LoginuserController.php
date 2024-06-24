@@ -22,23 +22,22 @@ class LoginuserController extends Controller
     public function logincus(Request $request)
     {
         //dd($request->all());
-        // $data = Pelanggan::where('email', $request->email) 
-        // ->where('jkel', $request->jkel)
-        // ->where('telepon', $request->telepon) 
-        // ->where('email', $request->email)
-        // ->where('alamat', $request->alamat)
-        // ->where('kota', $request->kota)
-        // ->where('status', $request->status)
-        // ->where('pwd', $request->pwd)
-        // ->first();
+        $data = Pelanggan::where('email', $request->email) 
+        ->first();
         //dd($data->user_id);
 
-        $data = Pelanggan::where('email', $request->email)->first();
+        // $data = Pelanggan::where('email', $request->email)->first();
 
         if ($data) {
-            if (md5($request->pwd) == ($data->pwd)) {
+            if (Hash::check($request->pwd, $data->pwd)) {
+                session::put('id',$data->id);
                 session::put('email',$data->email);
+                session::put('jkel',$data->jkel);
+                session::put('telepon',$data->telepon);
+                session::put('alamat',$data->alamat);
+                session::put('kota',$data->kota);
                 session::put('status',$data->status);
+                session::put('pwd',$data->pwd);
                 session(['berhasil_login'=> true]);
                 return redirect('/');
             }
@@ -96,7 +95,7 @@ class LoginuserController extends Controller
             'alamat' => $request->alamat,
             'kota' => $request->kota,
             'status' => $request->status,
-            'pwd' => md5($request->pwd),
+            'pwd' => Hash::make($request->pwd),
         ]);
 
         Alert::success('Register Berhasil!', 'Silahkan Login Untuk Masuk Ke Halaman!');

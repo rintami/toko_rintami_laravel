@@ -260,7 +260,9 @@
 						<div class="block2-pic hov-img0">
 							<img src="{{asset('gambarproduk/'.$inidata->gambar1)}}" alt="IMG-PRODUCT" style="width: 350; height:350px;">
 
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							{{-- <a href="{{ route('shop.show', $inidata->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> --}}
+
+							<a href="{{ route('shop.show', $inidata->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								Quick View
 							</a>
 						</div>
@@ -268,11 +270,15 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									{{$inidata->nama}}
+									{{$inidata->namaproduk}}
 								</a>
 
 								<span class="stext-105 cl3">
 									{{$inidata->harga}}
+								</span>
+								<span>
+								<a href="{{route('cart.create')}}" class="btn">Tambah Keranjang</a>
+								<a href="{{route('pesanan.create')}}" class="btn">Buat Pesanan</a>
 								</span>
 							</div>
 

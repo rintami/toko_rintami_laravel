@@ -15,7 +15,7 @@ class CreateTokosTable extends Migration
     {
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 100);
+            $table->string('namatoko', 100);
             $table->char('telepon', 30);
             $table->string('email', 50);
             $table->string('alamat', 100);

@@ -1,27 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Produk;
-use App\Models\detailproduk;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 
-class ShopController extends Controller
+use Illuminate\Http\Request;
+
+class PesananController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = Produk::join('detailproduks', 'produks.id', '=', 'detailproduks.kodeproduk')
-            ->select('produks.*', 'detailproduks.*')
-            ->get();
-        // dd($shop);
-        
-        return view('shop.index', compact('data'))->with('i', (request()->input('page', 1) -1) *15);
+        //
     }
 
     /**
@@ -51,16 +43,9 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Produk $produk)
+    public function show($id)
     {
-        $data = DB::table('produks')
-        ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
-        ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
-        ->select('produks.*', 'tokos.*', 'kategoris.*', 'produks.id AS kodeproduk')
-        ->first();
-
-        // dd($data);
-        return view('shop.show', compact('data'));
+        //
     }
 
     /**

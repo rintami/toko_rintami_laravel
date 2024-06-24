@@ -97,10 +97,14 @@
 							<li class="@yield('contact')">
 								<a href="contact">Contact</a>
 							</li>
+							<li class="@yield('pesanan')">
+								<a href="pesanan">Pesanan</a>
+							</li>
 							<li>
-								<p>{{Session::get('email')}}
-									{{Session::get('jkel')}}
-								</p>
+								<a href="/logoutuser">Logout</a>
+							</li>
+							<li>
+								{{Session::get('email')}}
 							</li>
 						</ul>
 					</div>	

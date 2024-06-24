@@ -13,6 +13,6 @@ class Toko extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nama', 'telepon', 'email', 'alamat', 'kota'
+        'namatoko', 'telepon', 'email', 'alamat', 'kota'
     ];
 }

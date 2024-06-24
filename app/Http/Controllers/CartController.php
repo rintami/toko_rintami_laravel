@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Keranjang;
 use App\Models\Pelanggan;
 use App\Models\detailproduk;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -18,19 +19,20 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
+        // $user = $request['user'];
 
-        $user = $request['user'];
+        $user = session::get('email');
+        // $data = Keranjang::where('user', $user)->get();
         $data = DB::table('keranjangs')
         ->join('produks', 'keranjangs.kodeproduk', '=', 'produks.id')
         ->join('pelanggans', 'keranjangs.kodepelanggan', '=', 'pelanggans.id')
-        ->join('detailproduks', 'produks.id', '=', 'detailproduks.kodeproduk')
-        ->select('keranjangs.*', 'produks.*', 'pelanggans.*', 'detailproduks.*', 'produks.nama AS namabarang')
-        ->where('user', $user)
+        ->select('keranjangs.*', 'produks.*', 'pelanggans.*', 'produks.namaproduk AS namabarang')
+        ->where('keranjangs.user', $user)
         ->get();
 
         // dd($data);
 
-        return view('cart.index', compact('cart'))->with('i', (request()->input('page', 1) -1) *15);
+        return view('cart.index', compact('data'))->with('i', (request()->input('page', 1) -1) *15);
     }
 
     /**
@@ -40,7 +42,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        return view('cart.create');
     }
 
     /**
@@ -51,7 +53,34 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jumlah = $request['jumlah'];
+        $harga = $request['harga'];
+        $totalharga = ($jumlah * $harga);
+
+        $request -> validate([
+            'kodeproduk' => 'required',
+            'kodepelanggan' => 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
+            'harga' => 'required',
+            'totalharga' => 'required',
+            'user' => 'required',
+        ]);
+
+        $keranjang = Keranjang::create([
+            'kodeproduk' => $request->kodeproduk,
+            'kodepelanggan' => $request->kodepelanggan,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
+            'harga' => $request->harga,
+            'totalharga' => $totalharga,
+            'user' => $request->user,
+        ]);
+
+        dd($keranjang);
+        // Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
+        // return redirect()->route('cart.index');
+        
     }
 
     /**

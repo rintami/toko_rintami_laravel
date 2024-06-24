@@ -30,7 +30,7 @@
               <input type="text" name="email" placeholder="Masukkan Email" required>
             </div>
             <div class="field">
-              <input type="text" name="password" placeholder="Masukkan Password" required>
+              <input type="password" name="pwd" placeholder="Masukkan Password" required>
             </div>
             <div class="pass-link"><a href="#">Forgot password?</a></div>
             <div class="field btn">

@@ -13,6 +13,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginuserController;
+use App\Http\Controllers\PesananController;
 
 
 
@@ -42,6 +43,8 @@ Route::resource('detailco', DetailcoController::class);
 Route::resource('keranjang', KeranjangController::class);
 Route::resource('shop', ShopController::class);
 Route::resource('cart', CartController::class);
+Route::resource('pesanan', PesananController::class);
+
 
 // Route::post('logincus', 'LoginuserController@logincus')->name('logincus');
 Route::post('logincus', [LoginuserController::class, 'logincus'])->name('logincus');
