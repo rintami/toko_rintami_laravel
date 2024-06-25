@@ -17,6 +17,7 @@
             <li class=@yield('keranjang')><a class="nav-link" href="keranjang"><i class="fa fa-credit-card" aria-hidden="true"></i> <span>Keranjang</span></a></li>
             <li class=@yield('checkout')><a class="nav-link" href="checkout"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Checkout</span></a></li>
             <li class=@yield('detailco')><a class="nav-link" href="detailco"><i class="fa fa-file" aria-hidden="true"></i> <span>Detail Checkout</span></a></li>
+            <li class=@yield('cokaryawan')><a class="nav-link" href="cokaryawan"><i class="fa fa-credit-card" aria-hidden="true"></i><span>Pesanan Pelanggan</span></a></li>
           </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

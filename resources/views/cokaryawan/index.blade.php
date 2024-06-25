@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Karyawan')
-@section('karyawan', 'active')
+@section('title', 'Pesanan Pelanggan')
+@section('cokaryawan', 'active')
 
 @section('section_header')
-<h1>Karyawan</h1>
+<h1>Pesanan</h1>
 <div class="section-header-breadcrumb">
-  <div class="breadcrumb-item active"><a href="#">Karyawan</a></div>
-  <div class="breadcrumb-item">List Karyawan</div>
+  <div class="breadcrumb-item active"><a href="#">Pesanan</a></div>
+  <div class="breadcrumb-item">Pesanan Pelanggan</div>
 </div>
 @endsection
 
@@ -34,35 +34,37 @@
             <thead>
               <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Jenis Kelamin</th>
-                <th class="text-center">Telepon</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Alamat</th>
-                <th class="text-center">Kota</th>
-                <th class="text-center">Jabatan</th>
-                <th class="text-center">Gaji</th>
-                <th class="text-center">Password</th>
+                <th class="text-center">Kode Produk</th>
+                <th class="text-center">Kode Pelanggan</th>
+                <th class="text-center">Tanggal</th>
+                <th class="text-center">Harga</th>
+                <th class="text-center">Jumlah</th>
+                <th class="text-center">Total</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Bukti TF</th>
+                <th class="text-center">User</th>
                 <th class="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($karyawan as $employee)
+              @foreach($pesanan as $data)
               <tr>
                 <td class="text-center">{{ ++$i }}</td>
-                <td>{{$employee->nama}}</td>
-                <td>{{$employee->jkel}}</td>
-                <td>{{$employee->telepon}}</td>
-                <td>{{$employee->email}}</td>
-                <td>{{$employee->alamat}}</td>
-                <td>{{$employee->kota}}</td>
-                <td>{{$employee->jabatan}}</td>
-                <td>{{$employee->gaji}}</td>
-                <td>{{$employee->pwd}}</td>
+                <td>{{$data->kodeproduk}}</td>
+                <td>{{$data->kodepelanggan}}</td>
+                <td>{{$data->tanggal}}</td>
+                <td>{{$data->harga}}</td>
+                <td>{{$data->jumlah}}</td>
+                <td>{{$data->totalharga}}</td>
+                <td>{{$data->status}}</td>
+                <td>
+					<img src="{{asset('buktitf/'.$data->buktitf)}}" alt="IMG" width="100px">
+                </td>
+                <td>{{$data->user}}</td>
                 <td class="text-center">
-                    <form action="{{ route('karyawan.destroy',$employee->id) }}" method="POST">
-                        <a class="btn btn-info btn-sm" href="{{ route('karyawan.show', $employee->id) }}"><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-primary btn-sm" href="{{ route('karyawan.edit', $employee->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                    <form action="{{ route('karyawan.destroy',$data->id) }}" method="POST">
+                        <a class="btn btn-info btn-sm" href="{{ route('karyawan.show', $data->id) }}"><i class="fas fa-eye"></i></a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('cokaryawan.edit', $data->id) }}"><i class="fas fa-pencil-alt"></i></a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
@@ -79,6 +81,6 @@
   </div>
 </div>
 
-{!! $karyawan->links() !!}
+{{-- {!! $karyawan->links() !!} --}}
 
 @endsection

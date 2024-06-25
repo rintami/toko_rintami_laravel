@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CekLoginMiddleware
+class LoginKarMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class CekLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!session('berhasil_login')){
-            return redirect('loginuser');
+        if(!session('berhasillogin')){
+            return redirect('logkaryawan');
         }
         return $next($request);
     }

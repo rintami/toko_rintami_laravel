@@ -19,7 +19,6 @@ class CreateKeranjangsTable extends Migration
             $table->unsignedBigInteger('kodepelanggan');
             $table->date('tanggal');
             $table->integer('jumlah', 11)->autoIncrement(false);
-            $table->integer('harga', 11)->autoIncrement(false);
             $table->integer('totalharga', 11)->autoIncrement(false);
             $table->string('user', 50);
             $table->timestamps();

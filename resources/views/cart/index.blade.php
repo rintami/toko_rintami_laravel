@@ -40,8 +40,8 @@
 											<img src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="IMG" width="100px">
 										</div>
 									</td>
-									<td class="column-2">{{$data->namabarang}}</td>
-									<td class="column-3">{{$data->harga}}</td>
+									<td class="column-2">{{$data->namaproduk}}</td>
+									<td class="column-3">Rp.{{number_format($data->harga, 0,',','.')}}</td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -55,7 +55,7 @@
 											</div>
 										</div>
 									</td>
-									<td class="column-5">{{$data->totalharga}}</td>
+									<td class="column-5">Rp.{{number_format($data->totalharga, 0,',','.')}}</td>
 								</tr>
                                 @endforeach
 							</table>
@@ -162,3 +162,4 @@
 			</div>
 		</div>
 	</form>
+@endsection

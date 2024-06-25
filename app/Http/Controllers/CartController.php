@@ -9,6 +9,7 @@ use App\Models\detailproduk;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -26,7 +27,7 @@ class CartController extends Controller
         $data = DB::table('keranjangs')
         ->join('produks', 'keranjangs.kodeproduk', '=', 'produks.id')
         ->join('pelanggans', 'keranjangs.kodepelanggan', '=', 'pelanggans.id')
-        ->select('keranjangs.*', 'produks.*', 'pelanggans.*', 'produks.namaproduk AS namabarang')
+        ->select('keranjangs.*', 'produks.*', 'pelanggans.*')
         ->where('keranjangs.user', $user)
         ->get();
 
@@ -62,8 +63,6 @@ class CartController extends Controller
             'kodepelanggan' => 'required',
             'tanggal' => 'required',
             'jumlah' => 'required',
-            'harga' => 'required',
-            'totalharga' => 'required',
             'user' => 'required',
         ]);
 
@@ -72,14 +71,13 @@ class CartController extends Controller
             'kodepelanggan' => $request->kodepelanggan,
             'tanggal' => $request->tanggal,
             'jumlah' => $request->jumlah,
-            'harga' => $request->harga,
             'totalharga' => $totalharga,
             'user' => $request->user,
         ]);
 
-        dd($keranjang);
-        // Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
-        // return redirect()->route('cart.index');
+        // dd($keranjang);
+        Alert::success('Sukses!', 'Silahkan Cek Produk Di Keranjang!');
+        return redirect()->route('cart.index');
         
     }
 

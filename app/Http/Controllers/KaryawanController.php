@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Karyawan;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class KaryawanController extends Controller
 {
@@ -48,9 +50,23 @@ class KaryawanController extends Controller
             'pwd' => 'required',
         ]);
 
+        $karyawan = Karyawan::create([
+            'nama' => $request->nama,
+            'jkel' => $request->jkel,
+            'telepon' => $request->telepon,
+            'email' => $request->email,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'jabatan' => $request->jabatan,
+            'gaji' => $request->gaji,
+            'pwd' => Hash::make($request->pwd),
+        ]);
+
+
         Karyawan::create($request->all());
 
-        return redirect()->route('karyawan.index')->with('succes', 'Data berhasil di input');
+        Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
+        return redirect()->route('karyawan.index');
     }
 
     /**
@@ -96,9 +112,22 @@ class KaryawanController extends Controller
             'pwd' => 'required',
         ]);
 
-        $karyawan -> update($request->all());
+        $datakar = [
+            'nama' => $request->nama,
+            'jkel' => $request->jkel,
+            'telepon' => $request->telepon,
+            'email' => $request->email,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'jabatan' => $request->jabatan,
+            'gaji' => $request->gaji,
+            'pwd' => Hash::make($request->pwd),
+        ];
 
-        return redirect()->route('karyawan.index')->with('succes', 'Data berhasil di input');
+        $karyawan->update($datakar);
+
+        Alert::success('Sukses!', 'Data Berhasil Di Edit!');
+        return redirect()->route('karyawan.index');
     }
 
     /**
@@ -112,6 +141,7 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::find($id);
         $karyawan -> delete();
 
-        return redirect()->route('karyawan.index')->with('succes', 'Jenis Simpanan berhasil di hapus'); 
+        Alert::success('Sukses!', 'Data Berhasil Di Hapus!');
+        return redirect()->route('karyawan.index'); 
     }
 }

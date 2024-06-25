@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Toko;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TokoController extends Controller
 {
@@ -46,7 +47,8 @@ class TokoController extends Controller
 
         Toko::create($request->all());
 
-        return redirect()->route('toko.index')->with('succes', 'Data berhasil di input');
+        Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
+        return redirect()->route('toko.index');
     }
 
     /**
@@ -90,7 +92,8 @@ class TokoController extends Controller
 
         $toko -> update($request->all());
 
-        return redirect()->route('toko.index')->with('succes', 'Data berhasil di input');
+        Alert::success('Sukses!', 'Data Berhasil Di Edit!');
+        return redirect()->route('toko.index');
     }
 
     /**
@@ -104,6 +107,7 @@ class TokoController extends Controller
         $toko = Toko::find($id);
         $toko -> delete();
 
-        return redirect()->route('toko.index')->with('succes', 'Jenis Simpanan berhasil di hapus'); 
+        Alert::success('Sukses!', 'Data Berhasil Di Hapus!');
+        return redirect()->route('toko.index'); 
     }
 }

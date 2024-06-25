@@ -13,6 +13,6 @@ class Keranjang extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'kodeproduk', 'kodepelanggan', 'tanggal', 'jumlah', 'harga', 'totalharga', 'user'
+        'kodeproduk', 'kodepelanggan', 'tanggal', 'jumlah', 'totalharga', 'user'
     ];
 }

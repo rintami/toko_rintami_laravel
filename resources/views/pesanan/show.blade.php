@@ -17,7 +17,7 @@
     <p>Gambar1 : {{$data->gambar1}}</p>
     <p>Gambar2 : {{$data->gambar2}}</p>
     <p>Gambar3 : {{$data->gambar3}}</p>
-    <form class="needs-validation" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="needs-validation" action="{{ route('pesanan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if(session('failed'))
               <div class="alert alert-danger">{{ session('failed') }}</div>
@@ -29,6 +29,16 @@
                 <input type="date" class="form-control" name="tanggal" value="<?php echo date('Y-m-d')?>" readonly>
                 <input type="number" min="1" name="jumlah">
                 <input type="number" name="harga" value="{{$data->harga}}" readonly>
+                <select name="metodebayar" id="">
+                    <option value="Transfer Bank BRI">Transfer Bank BRI</option>
+                    <option value="Transfer Bank BCA">Transfer Bank BCA</option>
+                    <option value="Transfer Bank BNI">Transfer Bank BNI</option>
+                    <option value="Gopay">Gopay</option>
+                    <option value="OVO">OVO</option>
+                    <option value="DANA">DANA</option>
+                </select>
+                <input type="text" name="status" value="Dipesan" readonly>
+                <input type="file" name="buktitf" id="">
                 <input type="text" name="user" value="{{Session::get('email')}}" readonly>
               </div>
             </div>
@@ -40,7 +50,6 @@
               </div>
             </div>
           </form>
-    
 
 </body>
 </html>

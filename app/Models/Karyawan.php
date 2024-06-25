@@ -13,6 +13,6 @@ class Karyawan extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nama', 'jkel', 'telepon', 'email', 'alamat', 'kota', 'jabatan', 'gaji', 'pwd'
+        'nama', 'jkel', 'telepon', 'email', 'alamat', 'kota', 'jabatan', 'gaji', 'pwd',
     ];
 }

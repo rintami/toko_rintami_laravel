@@ -14,6 +14,8 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginuserController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\LoginkaryawanController;
+use App\Http\Controllers\CokaryawanController;
 
 
 
@@ -32,24 +34,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('kategori', KategoriController::class);
-Route::resource('toko', TokoController::class);
-Route::resource('produk', ProdukController::class);
-Route::resource('detailproduk', DetailprodukController::class);
-Route::resource('pelanggan', PelangganController::class);
-Route::resource('karyawan', KaryawanController::class);
-Route::resource('checkout', CheckoutController::class);
-Route::resource('detailco', DetailcoController::class);
-Route::resource('keranjang', KeranjangController::class);
-Route::resource('shop', ShopController::class);
-Route::resource('cart', CartController::class);
-Route::resource('pesanan', PesananController::class);
+Route::resource('kategori', KategoriController::class)->middleware('LoginKarMiddleware');
+Route::resource('toko', TokoController::class)->middleware('LoginKarMiddleware');
+Route::resource('produk', ProdukController::class)->middleware('LoginKarMiddleware');
+Route::resource('detailproduk', DetailprodukController::class)->middleware('LoginKarMiddleware');
+Route::resource('pelanggan', PelangganController::class)->middleware('LoginKarMiddleware');
+Route::resource('karyawan', KaryawanController::class)->middleware('LoginKarMiddleware');
+Route::resource('cokaryawan', CokaryawanController::class)->middleware('LoginKarMiddleware');
+Route::resource('checkout', CheckoutController::class)->middleware('CekLoginMiddleware');
+Route::resource('detailco', DetailcoController::class)->middleware('CekLoginMiddleware');
+Route::resource('keranjang', KeranjangController::class)->middleware('CekLoginMiddleware');
+Route::resource('shop', ShopController::class)->middleware('CekLoginMiddleware');
+Route::resource('cart', CartController::class)->middleware('CekLoginMiddleware');
+Route::resource('pesanan', PesananController::class)->middleware('CekLoginMiddleware');
 
 
 // Route::post('logincus', 'LoginuserController@logincus')->name('logincus');
 Route::post('logincus', [LoginuserController::class, 'logincus'])->name('logincus');
 Route::resource('loginuser', LoginuserController::class);
 Route::get('logoutuser', [LoginuserController::class, 'logoutuser'])->name('logoutuser')->middleware('CekLoginMiddleware');
+
+Route::post('loginkar', [LoginkaryawanController::class, 'loginkar'])->name('loginkar');
+Route::resource('logkaryawan', LoginkaryawanController::class);
+Route::get('logoutkaryawan', [LoginkaryawanController::class, 'logoutkaryawan'])->name('logoutkaryawan')->middleware('LoginKarMiddleware');
 
 
 

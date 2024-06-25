@@ -18,11 +18,13 @@ class CreateCheckoutsTable extends Migration
             $table->unsignedBigInteger('kodeproduk');
             $table->unsignedBigInteger('kodepelanggan');
             $table->integer('jumlah', 11)->autoIncrement(false);
+            $table->integer('harga', 11)->autoIncrement(false);
             $table->integer('totalharga', 11)->autoIncrement(false);
             $table->date('tanggal');
             $table->string('metodebayar', 30);
             $table->string('status', 50);
             $table->string('buktitf', 255);
+            $table->string('user', 50);
             $table->timestamps();
 
             $table->foreign('kodeproduk')->references('id')->on('tokos');

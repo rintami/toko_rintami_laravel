@@ -6,6 +6,8 @@ use App\Models\Produk;
 use App\Models\Toko;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProdukController extends Controller
 {
@@ -52,7 +54,8 @@ class ProdukController extends Controller
 
         Produk::create($request->all());
 
-        return redirect()->route('produk.index')->with('succes', 'Data berhasil di input');
+        Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
+        return redirect()->route('produk.index');
     }
 
     /**
@@ -100,7 +103,8 @@ class ProdukController extends Controller
 
         $produk -> update($request->all());
 
-        return redirect()->route('produk.index')->with('succes', 'Data berhasil di input');
+        Alert::success('Sukses!', 'Data Berhasil Di Edit!');
+        return redirect()->route('produk.index');
     }
 
     /**
@@ -114,6 +118,7 @@ class ProdukController extends Controller
         $produk = Produk::find($id);
         $produk -> delete();
 
-        return redirect()->route('produk.index')->with('succes', 'Jenis Simpanan berhasil di hapus'); 
+        Alert::success('Sukses!', 'Data Berhasil Di Hapus!');
+        return redirect()->route('produk.index'); 
     }
 }

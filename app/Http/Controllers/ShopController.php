@@ -6,6 +6,8 @@ use App\Models\Produk;
 use App\Models\detailproduk;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ShopController extends Controller
 {

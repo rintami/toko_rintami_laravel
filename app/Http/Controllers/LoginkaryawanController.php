@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Pelanggan;
+use App\Models\Karyawan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class LoginuserController extends Controller
+class LoginkaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,19 @@ class LoginuserController extends Controller
      */
     public function index()
     {
-        return view ('loginuser.index');
+        return view ('logkaryawan.index');
     }
 
-    public function logincus(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function loginkar(Request $request)
     {
         //dd($request->all());
-        $data = Pelanggan::where('email', $request->email) 
+        $data = Karyawan::where('email', $request->email) 
         ->first();
         //dd($data->user_id);
 
@@ -38,32 +44,28 @@ class LoginuserController extends Controller
                 session::put('alamat',$data->alamat);
                 session::put('kota',$data->kota);
                 session::put('status',$data->status);
+                session::put('jabatan',$data->jabatan);
+                session::put('gaji',$data->gaji);
                 session::put('pwd',$data->pwd);
-                session(['berhasil_login'=> true]);
-                Alert::success('Berhasil Login!', 'Selamat Datang di Love-Shop!');
-                return redirect('/');
+                session(['berhasillogin'=> true]);
+                Alert::success('Berhasil Login!', 'Selamat Datang Admin!');
+                return redirect('kategori');
             }
             else {
                 Alert::warning('Ups!', 'Password yang Anda Masukkan Salah!');
-                return view('loginuser.index');
+                return view('logkaryawan.index');
             }
         } else {
         Alert::warning('Ups!', 'Email tidak ditemukan!');
-        return view('loginuser.index');
+        return view('logkaryawan.index');
         }
     }
 
-    public function logoutuser(Request $request){
+    public function logoutkaryawan(Request $request){
         $request->session()->flush();
-        return redirect('loginuser');
+        return redirect('logkaryawan');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -77,30 +79,7 @@ class LoginuserController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate([
-            'nama' => 'required',
-            'jkel' => 'required',
-            'telepon' => 'required',
-            'email' => 'required',
-            'alamat' => 'required',
-            'kota' => 'required',
-            'status' => 'required',
-            'pwd' => 'required',
-        ]);
-
-        $pelanggan = Pelanggan::create([
-            'nama' => $request->nama,
-            'jkel' => $request->jkel,
-            'telepon' => $request->telepon,
-            'email' => $request->email,
-            'alamat' => $request->alamat,
-            'kota' => $request->kota,
-            'status' => $request->status,
-            'pwd' => Hash::make($request->pwd),
-        ]);
-
-        Alert::success('Register Berhasil!', 'Silahkan Login Untuk Masuk Ke Halaman!');
-        return redirect()->route('loginuser.index');
+        //
     }
 
     /**
