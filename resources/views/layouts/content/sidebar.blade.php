@@ -8,16 +8,16 @@
         </div>
         <ul class="sidebar-menu">
             <li class=><a class="nav-link" href=""><i class="far fa-square"></i> <span>Blank Page</span></a></li> 
-            <li class=@yield('kategori')><a class="nav-link" href="kategori"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Kategori</span></a></li>   
-            <li class=@yield('toko')><a class="nav-link" href="toko"><i class="fa fa-building" aria-hidden="true"></i> <span>Toko</span></a></li>  
-            <li class=@yield('produk')><a class="nav-link" href="produk"><i class="fas fa-th-large"></i> <span>Produk</span></a></li> 
-            <li class=@yield('detailproduk')><a class="nav-link" href="detailproduk"><i class="fa fa-shopping-basket" aria-hidden="true"></i> <span>Detail Produk</span></a></li>    
-            <li class=@yield('karyawan')><a class="nav-link" href="karyawan"><i class="fa fa-users" aria-hidden="true"></i> <span>Karyawan</span></a></li> 
-            <li class=@yield('home')><a class="nav-link" href="pelanggan"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Pelanggan</span></a></li>
-            <li class=@yield('keranjang')><a class="nav-link" href="keranjang"><i class="fa fa-credit-card" aria-hidden="true"></i> <span>Keranjang</span></a></li>
-            <li class=@yield('checkout')><a class="nav-link" href="checkout"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Checkout</span></a></li>
-            <li class=@yield('detailco')><a class="nav-link" href="detailco"><i class="fa fa-file" aria-hidden="true"></i> <span>Detail Checkout</span></a></li>
-            <li class=@yield('cokaryawan')><a class="nav-link" href="cokaryawan"><i class="fa fa-credit-card" aria-hidden="true"></i><span>Pesanan Pelanggan</span></a></li>
+            <li class=@yield('kategori')><a class="nav-link" href="{{ route('kategori.index') }}"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Kategori</span></a></li>   
+            <li class=@yield('toko')><a class="nav-link" href="{{ route('toko.index') }}"><i class="fa fa-building" aria-hidden="true"></i> <span>Toko</span></a></li>  
+            <li class=@yield('produk')><a class="nav-link" href="{{ route('produk.index') }}"><i class="fas fa-th-large"></i> <span>Produk</span></a></li> 
+            <li class=@yield('detailproduk')><a class="nav-link" href="{{ route('detailproduk.index') }}"><i class="fa fa-shopping-basket" aria-hidden="true"></i> <span>Detail Produk</span></a></li>    
+            <li class=@yield('karyawan')><a class="nav-link" href="{{ route('karyawan.index') }}"><i class="fa fa-users" aria-hidden="true"></i> <span>Karyawan</span></a></li> 
+            <li class=@yield('home')><a class="nav-link" href="{{ route('pelanggan.index') }}"><i class="fa fa-address-book" aria-hidden="true"></i> <span>Pelanggan</span></a></li>
+            <li class=@yield('keranjang')><a class="nav-link" href="{{ route('keranjang.index')}}"><i class="fa fa-credit-card" aria-hidden="true"></i> <span>Keranjang</span></a></li>
+            <li class=@yield('checkout')><a class="nav-link" href="{{ route('checkout.index') }}"><i class="fa fa-tasks" aria-hidden="true"></i> <span>Checkout</span></a></li>
+            <li class=@yield('detailco')><a class="nav-link" href="{{ route('detailco.index')}}"><i class="fa fa-file" aria-hidden="true"></i> <span>Detail Checkout</span></a></li>
+            <li class=@yield('cokaryawan')><a class="nav-link" href="{{ route('cokaryawan.index') }}"><i class="fa fa-credit-card" aria-hidden="true"></i><span>Pesanan Pelanggan</span></a></li>
           </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
