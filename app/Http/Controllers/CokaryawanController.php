@@ -67,9 +67,9 @@ class CokaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Checkout $checkout)
+    public function edit(Checkout $cokaryawan)
     {
-        return view('cokaryawan.edit', compact('checkout'));
+        return view('cokaryawan.edit', ['checkout' => $cokaryawan]);
     }
 
     /**
