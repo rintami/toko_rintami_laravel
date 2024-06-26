@@ -277,8 +277,9 @@
 									{{$inidata->harga}}
 								</span>
 								<span>
-								<a href="{{ route('shop.show', $inidata->id) }}" class="btn">Tambah Keranjang</a>
-								<a href="{{ route('pesanan.show', $inidata->id) }}" class="btn">Buat Pesanan</a>
+										<a href="{{ route('shop.show', $inidata->id) }}" class="btn btn-primary">Tambah Keranjang</a>
+										<br><br>
+										<a href="{{ route('pesanan.show', $inidata->id) }}" class="btn btn-info">Buat Pesanan</a>
 								</span>
 							</div>
 

@@ -70,9 +70,9 @@ class PesananController extends Controller
             'user' => 'required',
         ]);
 
-        $buktitf = $request->file('buktitf');
-        $namafile = $buktitf->getClientOriginalName();
-        $buktitf->move('buktitf/', $namafile);
+        $file = $request->file('buktitf');
+        $nama = $request->file('buktitf')->getClientOriginalName();
+        $file->move('buktitf/', $nama);
 
         // Checkout::create($request->all());
 
@@ -85,7 +85,7 @@ class PesananController extends Controller
             'totalharga' => $totalharga,
             'metodebayar' => $request->metodebayar,
             'status' => $request->status,
-            'buktitf' => $request->buktitf,
+            'buktitf' => $nama,
             'user' => $request->user,
         ]);
 

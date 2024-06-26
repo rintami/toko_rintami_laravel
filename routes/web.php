@@ -32,7 +32,7 @@ use App\Http\Controllers\CokaryawanController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('CekLoginMiddleware');
 
 Route::resource('kategori', KategoriController::class)->middleware('LoginKarMiddleware');
 Route::resource('toko', TokoController::class)->middleware('LoginKarMiddleware');

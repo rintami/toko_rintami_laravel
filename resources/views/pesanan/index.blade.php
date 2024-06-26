@@ -47,7 +47,7 @@
 										</div>
 									</td>
 									<td class="column-2">{{$data->namaproduk}}</td>
-									<td class="column-3">{{$data->harga}}</td>
+									<td class="column-3">Rp.{{number_format($data->harga, 0,',','.')}}</td>
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -61,21 +61,27 @@
 											</div>
 										</div>
 									</td>
-									<td class="column-5">{{$data->totalharga}}</td>
+									<td class="column-5">Rp.{{number_format($data->totalharga, 0,',','.')}}</td>
 									<td class="column-6">{{$data->statusco}}</td>
 									<td class="column-7">
 										<div class="how-itemcart1">
 											<img src="{{asset('buktitf/'.$data->buktitf)}}" alt="IMG" width="100px">
 										</div>
 									</td>
-									<td class="column-8">
-										<form action="{{ route('pesanan.destroy',$data->idco) }}" method="POST">
-											@csrf
-											@method('DELETE')
-											<button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
-											('Apakah Anda Yakin Ingin Membatalkan Pesanan Ini?')"><i class="fas fa-trash">Batalkan Pesanan</i></button>
-										</form>
-									</td>
+
+									@if($data->statusco == "Dipesan")
+										<td class="column-8">
+											<form action="{{ route('pesanan.destroy',$data->idco) }}" method="POST">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
+												('Apakah Anda Yakin Ingin Membatalkan Pesanan Ini?')">Batalkan Pesanan</button>
+											</form>
+										</td>
+									@endif
+										
+									
+									
 								</tr>
                                 @endforeach
 							</table>

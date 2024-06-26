@@ -15,7 +15,7 @@ class CokaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Checkout $checkout)
+    public function index(Checkout $cokaryawan)
     {
         // $pesanan = DB::table('checkouts')
         // ->join('produks', 'checkouts.kodeproduk', '=', 'produks.id')
@@ -69,7 +69,7 @@ class CokaryawanController extends Controller
      */
     public function edit(Checkout $cokaryawan)
     {
-        return view('cokaryawan.edit', ['checkout' => $cokaryawan]);
+        return view('cokaryawan.edit', ['checkout' => $cokaryawan], compact('cokaryawan'));
     }
 
     /**
@@ -79,42 +79,24 @@ class CokaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Checkout $checkout)
+    public function update(Request $request, Checkout $cokaryawan)
     {
         $request -> validate([
             'kodeproduk' => 'required',
             'kodepelanggan' => 'required',
-            'tanggal' => 'required',
             'jumlah' => 'required',
             'harga' => 'required',
+            'totalharga' => 'required',
+            'tanggal' => 'required',
             'metodebayar' => 'required',
+            'buktitf' => 'required',
             'status' => 'required',
-            'buktitf' => 'required|mimes:jpeg,jpg,png,gif',
             'user' => 'required',
         ]);
 
-        $buktitf = $request->file('buktitf');
-        $namafile = $buktitf->getClientOriginalName();
-        $buktitf->move('buktitf/', $namafile);
+        $cokaryawan -> update($request->all());
 
-        // Checkout::create($request->all());
-
-        $pesanan = Checkout::create([
-            'kodeproduk' => $request->kodeproduk,
-            'kodepelanggan' => $request->kodepelanggan,
-            'tanggal' => $request->tanggal,
-            'jumlah' => $request->jumlah,
-            'harga' => $request->harga,
-            'totalharga' => $request->totalharga,
-            'metodebayar' => $request->metodebayar,
-            'status' => $request->status,
-            'buktitf' => $request->buktitf,
-            'user' => $request->user,
-        ]);
-
-        $checkout->update($request->all());
-
-        Alert::success('Sukses!', 'Data Berhasil Di Edit!');
+        Alert::success('Sukses!', 'Pesanan Disetujui!');
         return redirect()->route('cokaryawan.index');
     }
 

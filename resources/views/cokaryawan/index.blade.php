@@ -9,6 +9,8 @@
   <div class="breadcrumb-item">Pesanan Pelanggan</div>
 </div>
 @endsection
+  @include('sweetalert::alert')
+
 
 @section('wrap_content')
 <div class="row">
@@ -64,7 +66,7 @@
                 <td class="text-center">
                     <form action="{{ route('karyawan.destroy',$data->id) }}" method="POST">
                         <a class="btn btn-info btn-sm" href="{{ route('karyawan.show', $data->id) }}"><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-primary btn-sm" href="{{ route('cokaryawan.edit', $data->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('cokaryawan.edit', $data->id) }}"><i class="fas fa-pencil-alt">Setujui Pesanan</i></a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
