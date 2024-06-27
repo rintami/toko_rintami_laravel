@@ -23,7 +23,7 @@
 
 
     	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
 						<div class="wrap-table-shopping-cart">
@@ -69,7 +69,7 @@
 										</div>
 									</td>
 
-									@if($data->statusco == "Dipesan")
+									{{-- @if($data->statusco == "Dipesan") --}}
 										<td class="column-8">
 											<form action="{{ route('pesanan.destroy',$data->idco) }}" method="POST">
 												@csrf
@@ -78,7 +78,7 @@
 												('Apakah Anda Yakin Ingin Membatalkan Pesanan Ini?')">Batalkan Pesanan</button>
 											</form>
 										</td>
-									@endif
+									{{-- @endif --}}
 										
 									
 									
@@ -91,5 +91,5 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
 @endsection

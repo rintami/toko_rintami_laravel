@@ -21,7 +21,7 @@
 	</div>
 
     	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -37,7 +37,7 @@
 									<th class="column-6"></th>
 								</tr>
 
-                                @foreach($data as $data)
+                                @foreach($carts as $data)
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
@@ -79,5 +79,5 @@
 
 			</div>
 		</div>
-	</form>
+	</div>
 @endsection

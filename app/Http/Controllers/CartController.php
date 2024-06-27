@@ -23,17 +23,15 @@ class CartController extends Controller
         // $user = $request['user'];
 
         $user = session::get('email');
-        // $data = Keranjang::where('user', $user)->get();
-        $data = DB::table('keranjangs')
+        $carts = DB::table('keranjangs')
         ->join('produks', 'keranjangs.kodeproduk', '=', 'produks.id')
-        ->join('pelanggans', 'keranjangs.kodepelanggan', '=', 'pelanggans.id')
-        ->select('keranjangs.*', 'produks.*', 'pelanggans.*')
+        ->select('keranjangs.*', 'produks.namaproduk', 'produks.harga', 'produks.gambar1')
         ->where('keranjangs.user', $user)
         ->get();
 
-        // dd($data);
+        // dd($user, $carts);
 
-        return view('cart.index', compact('data'))->with('i', (request()->input('page', 1) -1) *15);
+        return view('cart.index', compact('carts'))->with('i', (request()->input('page', 1) -1) *15);
     }
 
     /**
@@ -123,6 +121,11 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Keranjang::find($id);
+        // dd($data, Keranjang::all());
+        $data->delete();
+        Alert::success('Sukses!', 'Berhasil menghapus data produk di keranjang');
+        return redirect()->route('cart.index'); 
+
     }
 }
