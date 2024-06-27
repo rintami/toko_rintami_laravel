@@ -24,8 +24,6 @@
 	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
@@ -35,6 +33,7 @@
 									<th class="column-4">Jumlah</th>
 									<th class="column-5">Total</th>
 									<th class="column-6"></th>
+									<th class="column-7"></th>
 								</tr>
 
                                 @foreach($carts as $data)
@@ -67,14 +66,14 @@
 												<button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
 												('Apakah Anda Yakin Ingin Membatalkan Pesanan Ini?')">Hapus Dari Keranjang</button>
 											</form>
-										</td>
+									</td>
+									<td class="column-7">
+										<a href="{{ route('pesanan.show', $data->id) }}"class="btn btn-success btn-sm">Pesanan</a>
+									</td>
 								</tr>
                                 @endforeach
 							</table>
 						</div>
-
-					</div>
-				</div>
 
 
 			</div>

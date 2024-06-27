@@ -124,6 +124,7 @@ class CartController extends Controller
         $data = Keranjang::find($id);
         // dd($data, Keranjang::all());
         $data->delete();
+        
         Alert::success('Sukses!', 'Berhasil menghapus data produk di keranjang');
         return redirect()->route('cart.index'); 
 

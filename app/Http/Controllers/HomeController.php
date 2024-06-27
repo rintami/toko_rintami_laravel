@@ -3,24 +3,21 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
-use App\Models\detailproduk;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
-class ShopController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Produk $produk)
     {
-        $data = Produk::all()->where('stok', '>', 0);
-        
-        return view('shop.index', compact('data'))->with('i', (request()->input('page', 1) -1) *15);
+        $produk = Produk::all();   
+        return view('/', ['produk' => $produk], compact('produk'));
     }
 
     /**
@@ -50,16 +47,9 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Produk $produk)
+    public function show($id)
     {
-        $data = DB::table('produks')
-        ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
-        ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
-        ->select('produks.*', 'tokos.*', 'kategoris.*', 'produks.id AS kodeproduk')
-        ->first();
-
-        // dd($data);
-        return view('shop.show', compact('data'));
+        //
     }
 
     /**
