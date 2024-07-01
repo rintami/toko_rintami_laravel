@@ -16,6 +16,9 @@ use App\Http\Controllers\LoginuserController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\LoginkaryawanController;
 use App\Http\Controllers\CokaryawanController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\DashController;
+
 
 
 
@@ -34,6 +37,7 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('CekLoginMiddleware');
 
+Route::resource('dash', DashController::class)->middleware('LoginKarMiddleware');
 Route::resource('kategori', KategoriController::class)->middleware('LoginKarMiddleware');
 Route::resource('toko', TokoController::class)->middleware('LoginKarMiddleware');
 Route::resource('produk', ProdukController::class)->middleware('LoginKarMiddleware');
@@ -47,6 +51,7 @@ Route::resource('keranjang', KeranjangController::class)->middleware('CekLoginMi
 Route::resource('shop', ShopController::class)->middleware('CekLoginMiddleware');
 Route::resource('cart', CartController::class)->middleware('CekLoginMiddleware');
 Route::resource('pesanan', PesananController::class)->middleware('CekLoginMiddleware');
+Route::resource('template', PageController::class)->middleware('CekLoginMiddleware');
 
 
 // Route::post('logincus', 'LoginuserController@logincus')->name('logincus');

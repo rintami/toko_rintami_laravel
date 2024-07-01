@@ -32,7 +32,10 @@ class PesananController extends Controller
 
         // dd($co);
 
-        return view('pesanan.index', compact('pesanan'))->with('i', (request()->input('page', 1) -1) *15);
+        $user = session::get('email');
+        $jumlahco = Checkout::where('user', $user)->count();
+
+        return view('pesanan.index', compact('pesanan', 'jumlahco'))->with('i', (request()->input('page', 1) -1) *15);
     }
 
     /**

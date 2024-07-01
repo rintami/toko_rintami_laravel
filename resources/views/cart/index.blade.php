@@ -1,4 +1,4 @@
-@extends('template.page')
+@extends('template.index')
 @section('title', 'Cart')
 @section('cart', 'active-menu')
 @section('main')

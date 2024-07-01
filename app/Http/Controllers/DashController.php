@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Produk;
+use App\Models\Pelanggan;
+use App\Models\Karyawan;
 use App\Models\Checkout;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class HomeController extends Controller
+
+class DashController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produk = Produk::all();   
-        $user = session::get('email');
-        $jumlahco = Checkout::where('user', $user)->count();
-        return view('welcome', ['produk' => $produk], compact('produk', 'jumlahco'));
+        $karyawan = Karyawan::count();
+        $pelanggan = Pelanggan::count();
+        $checkout = checkout::count();
+        return view('dash.index', compact('karyawan', 'pelanggan', 'checkout'));
     }
 
     /**

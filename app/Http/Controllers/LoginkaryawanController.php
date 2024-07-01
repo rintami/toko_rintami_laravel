@@ -49,7 +49,7 @@ class LoginkaryawanController extends Controller
                 session::put('pwd',$data->pwd);
                 session(['berhasillogin'=> true]);
                 Alert::success('Berhasil Login!', 'Selamat Datang Admin!');
-                return redirect('kategori');
+                return redirect('dash');
             }
             else {
                 Alert::warning('Ups!', 'Password yang Anda Masukkan Salah!');

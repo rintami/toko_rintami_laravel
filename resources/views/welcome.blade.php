@@ -1,4 +1,4 @@
-@extends('template.page')
+@extends('template.index')
 @section('title', 'Selamat Datang')
 @section('home', 'active-menu')
 @section('main')
@@ -415,7 +415,7 @@
 				</div>
 			</div>
 
-			@foreach($produk as $data)
+			{{-- @foreach($produk as $data)
 			<div class="row isotope-grid">
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
@@ -449,6 +449,6 @@
 					</div>
 				</div>
             </div>
-			@endforeach
+			@endforeach --}}
         </div>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Keranjang;
 use App\Models\Pelanggan;
 use App\Models\detailproduk;
+use App\Models\Checkout;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -29,9 +30,11 @@ class CartController extends Controller
         ->where('keranjangs.user', $user)
         ->get();
 
+        $jumlahco = Checkout::where('user', $user)->count();
+
         // dd($user, $carts);
 
-        return view('cart.index', compact('carts'))->with('i', (request()->input('page', 1) -1) *15);
+        return view('cart.index', compact('carts', 'jumlahco'))->with('i', (request()->input('page', 1) -1) *15);
     }
 
     /**
