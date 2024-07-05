@@ -1,80 +1,66 @@
-@extends('layouts.app')
-@section('title', 'Produk')
-@section('produk', 'active')
-
-@section('section_header')
-<h1>Detail Produk</h1>
-<div class="section-header-breadcrumb">
-  <div class="breadcrumb-item active"><a href="{{ route('produk.index') }}">Back</a></div>
-</div>
-@endsection
-
-@section('wrap_content')
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>ID :</strong>
-            {{ $produk->id }}
+            {{ $barang->id }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Kode Toko :</strong>
-            {{ $produk->kodetoko }}
+            <strong>Nama Toko :</strong>
+            {{ $barang->namatoko }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Kode Kategori :</strong>
-            {{ $produk->kodekategori }}
+            <strong>Kategori :</strong>
+            {{ $barang->keterangan }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nama :</strong>
-            {{ $produk->nama }}
+            {{ $barang->nama }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Stok :</strong>
-            {{ $produk->stok }}
+            {{ $barang->stok }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Harga :</strong>
-            {{ $produk->harga }}
+            {{ $barang->harga }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Daerah :</strong>
-            {{ $produk->daerah }}
+            {{ $barang->daerah }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Deskripsi :</strong>
-            {{ $produk->deskripsi }}
+            {{ $barang->deskripsi }}
         </div>
     </div><div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Gambar 1 :</strong>
-                <img src="{{asset('gambarproduk/'.$produk->gambar1)}}" alt="" style="width: 50px">
+                <img src="{{asset('gambarproduk/'.$barang->gambar1)}}" alt="" style="width: 50px">
         </div>
     </div><div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Gambar 2 :</strong>
-                <img src="{{asset('gambarproduk/'.$produk->gambar2)}}" alt="" style="width: 50px">
+                <img src="{{asset('gambarproduk/'.$barang->gambar2)}}" alt="" style="width: 50px">
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Gambar 3 :</strong>
-                <img src="{{asset('gambarproduk/'.$produk->gambar3)}}" alt="" style="width: 50px">
+                <img src="{{asset('gambarproduk/'.$barang->gambar3)}}" alt="" style="width: 50px">
         </div>
     </div>
 </div>
-
-@endsection

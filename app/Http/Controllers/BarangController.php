@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Pelanggan;
-use App\Models\Karyawan;
-use App\Models\Checkout;
+use App\Models\Produk;
+use Illuminate\Support\Facades\DB;
 
 
-class DashController extends Controller
+class BarangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,14 @@ class DashController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::count();
-        $pelanggan = Pelanggan::count();
-        $checkout = Checkout::count();
-        $pemasukan = Checkout::sum('totalharga'); 
-        return view('dash.index', compact('karyawan', 'pelanggan', 'checkout', 'pemasukan'));
+        $barang = Produk::where('stok', '>', 0)->get();
+        // $barang = DB::table('produks')
+        // ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
+        // ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
+        // ->select('produks.*', 'produks.id AS idproduk', 'tokos.namatoko', 'tokos.kota', 'kategoris.keterangan')
+        // ->where('produks.stok', '>', 0)
+        // ->get();
+        return view('barang.index', compact('barang'));
     }
 
     /**
@@ -52,7 +54,14 @@ class DashController extends Controller
      */
     public function show($id)
     {
-        //
+        $barang = DB::table('produks')
+        ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
+        ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
+        ->select('produks.*', 'tokos.namatoko', 'tokos.kota', 'kategoris.keterangan')
+        ->where('produks.id', $id)
+        ->first();
+        dd($barang);
+        // return view('barang.show', compact('barang'));
     }
 
     /**

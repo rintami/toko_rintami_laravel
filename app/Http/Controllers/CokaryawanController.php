@@ -17,11 +17,6 @@ class CokaryawanController extends Controller
      */
     public function index(Checkout $cokaryawan)
     {
-        // $pesanan = DB::table('checkouts')
-        // ->join('produks', 'checkouts.kodeproduk', '=', 'produks.id')
-        // ->join('pelanggans', 'checkouts.kodepelanggan', '=', 'pelanggans.id')
-        // ->select('checkouts.*', 'produks.*', 'pelanggans.*', 'checkouts.status AS statusco', 'produks.id AS idproduk', 'pelanggans.id AS idpelanggan', 'checkouts.id AS idco')
-        // ->get();
 
         $pesanan = Checkout::latest()->paginate(15);
         $checkout = Checkout::first();

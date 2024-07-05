@@ -5,6 +5,9 @@
 <br>
 <br>
 <br>
+<br><br>
+<br>
+<br>
 
 <center>
 <div class="card text-center border-primary mb-3" style="width: 50%;">
@@ -21,13 +24,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="First slide">
+            <img class="d-block w-100" src="{{asset('gambarproduk/'.$pesanan->gambar1)}}" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="Second slide">
+            <img class="d-block w-100" src="{{asset('gambarproduk/'.$pesanan->gambar1)}}" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="Third slide">
+            <img class="d-block w-100" src="{{asset('gambarproduk/'.$pesanan->gambar1)}}" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -42,13 +45,13 @@
       </center>
 <br>
 <br>
-    <p class="card-title">Nama Produk : {{$data->namaproduk}}</p>
-    <p class="card-text">Nama Toko : {{$data->namatoko}}</p>
-    <p class="card-text">Kategori : {{$data->keterangan}}</p>
-    <p class="card-text">Stok : {{$data->stok}}</p>
-    <p class="card-text">Harga : {{$data->harga}}</p>
-    <p class="card-text">Daerah : {{$data->daerah}}</p>
-    <p class="card-text">Deskripsi : {{$data->deskripsi}}</p>
+    <p class="card-title">Nama Produk : {{$pesanan->namaproduk}}</p>
+    <p class="card-text">Nama Toko : {{$pesanan->namatoko}}</p>
+    <p class="card-text">Kategori : {{$pesanan->keterangan}}</p>
+    <p class="card-text">Stok : {{$pesanan->stok}}</p>
+    <p class="card-text">Harga : {{$pesanan->harga}}</p>
+    <p class="card-text">Daerah : {{$pesanan->daerah}}</p>
+    <p class="card-text">Deskripsi : {{$pesanan->deskripsi}}</p>
 
     <form class="form-group" action="{{ route('pesanan.store') }}" method="POST" enctype="multipart/form-data">
       
@@ -56,7 +59,7 @@
             @if(session('failed'))
               <div class="alert alert-danger">{{ session('failed') }}</div>
             @endif
-                <input type="text" class="form-control" name="kodeproduk" value="{{$data->kodeproduk}}" readonly hidden>
+                <input type="text" class="form-control" name="kodeproduk" value="{{$pesanan->id}}" readonly hidden>
                 <input type="text" class="form-control" name="kodepelanggan" value="{{Session::get('id')}}" readonly hidden>
                 <input type="date" class="form-control" name="tanggal" value="<?php echo date('Y-m-d')?>" readonly hidden>
                 <center>
@@ -102,7 +105,7 @@
                   </tr>
                 </table>
                 </center>
-                <input type="number" name="harga" value="{{$data->harga}}" readonly hidden>
+                <input type="number" name="harga" value="{{$pesanan->harga}}" readonly hidden>
                 
                 <input type="text" name="status" value="Dipesan" readonly hidden>
                 

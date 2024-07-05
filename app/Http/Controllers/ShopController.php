@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\detailproduk;
 use App\Models\Checkout;
+use App\Models\Keranjang;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,12 +21,19 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $data = Produk::all()->where('stok', '>', 0);
+        $shop = Produk::where('stok', '>', 0)->get();
+
+        // $data = DB::table('produks')
+        // ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
+        // ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
+        // ->select('produks.*', 'produks.id AS idproduk', 'tokos.id AS idtoko', 'kategoris.id AS idkategori', 'tokos.namatoko', 'tokos.kota', 'kategoris.keterangan')
+        // ->where('produks.stok', '>', 0)
+        // ->get();
 
         $user = session::get('email');
-        $jumlahco = Checkout::where('user', $user)->count();
+        $jumlahco = Keranjang::where('user', $user)->count();
         
-        return view('shop.index', compact('data', 'jumlahco'))->with('i', (request()->input('page', 1) -1) *15);
+        return view('shop.index', compact('shop', 'jumlahco'));
     }
 
     /**
@@ -55,16 +63,16 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Produk $produk)
+    public function show($id)
     {
-        $data = DB::table('produks')
+        $shop = DB::table('produks')
         ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
         ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
-        ->select('produks.*', 'tokos.*', 'kategoris.*', 'produks.id AS kodeproduk')
+        ->select('produks.*', 'tokos.namatoko', 'tokos.kota', 'kategoris.keterangan')
+        ->where('produks.id', $id)
         ->first();
-
-        // dd($data);
-        return view('shop.show', compact('data'));
+        // dd($barang);
+        return view('shop.show', compact('shop'));
     }
 
     /**

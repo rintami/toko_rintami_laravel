@@ -45,16 +45,51 @@ class ProdukController extends Controller
         $request -> validate([
             'kodetoko' => 'required',
             'kodekategori' => 'required',
-            'nama' => 'required',
+            'namaproduk' => 'required',
             'stok' => 'required',
             'harga' => 'required',
             'daerah' => 'required',
             'deskripsi' => 'required',
+            'gambar1' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar2' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar3' => 'required|mimes:jpeg,jpg,png,gif',
         ]);
 
-        Produk::create($request->all());
+        $gambar1 = $request->file('gambar1');
+        $gambar2 = $request->file('gambar2');
+        $gambar3 = $request->file('gambar3');
+
+        if ($gambar1) {
+            $nama1 = $gambar1->getClientOriginalName();
+            $gambar1->move('gambarproduk/', $nama1);
+        }
+
+        if ($gambar2) {
+            $nama2 = $gambar2->getClientOriginalName();
+            $gambar2->move('gambarproduk/', $nama2);
+        }
+
+        if ($gambar3) {
+            $nama3 = $gambar3->getClientOriginalName();
+            $gambar3->move('gambarproduk/', $nama3);
+        }
+
+        $produk = Produk::create([
+            'kodetoko' => $request->kodetoko,
+            'kodekategori' => $request->kodekategori,
+            'namaproduk' => $request->namaproduk,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'daerah' => $request->daerah,
+            'deskripsi' => $request->deskripsi,
+            'gambar1' => $nama1,
+            'gambar2' => $nama2,
+            'gambar3' => $nama3,
+        ]);
 
         Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
+
+        // dd($produk);
         return redirect()->route('produk.index');
     }
 
@@ -99,6 +134,41 @@ class ProdukController extends Controller
             'harga' => 'required',
             'daerah' => 'required',
             'deskripsi' => 'required',
+            'gambar1' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar2' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar3' => 'required|mimes:jpeg,jpg,png,gif',
+        ]);
+
+        $gambar1 = $request->file('gambar1');
+        $gambar2 = $request->file('gambar2');
+        $gambar3 = $request->file('gambar3');
+
+        if ($gambar1) {
+            $nama1 = $gambar1->getClientOriginalName();
+            $gambar1->move('gambarproduk/', $nama1);
+        }
+
+        if ($gambar2) {
+            $nama2 = $gambar2->getClientOriginalName();
+            $gambar2->move('gambarproduk/', $nama2);
+        }
+
+        if ($gambar3) {
+            $nama3 = $gambar3->getClientOriginalName();
+            $gambar3->move('gambarproduk/', $nama3);
+        }
+
+        $produk -> update ([
+            'kodetoko' => $request->kodetoko,
+            'kodekategori' => $request->kodekategori,
+            'namaproduk' => $request->namaproduk,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'daerah' => $request->daerah,
+            'deskripsi' => $request->deskripsi,
+            'gambar1' => $nama1,
+            'gambar2' => $nama2,
+            'gambar3' => $nama3
         ]);
 
         $produk -> update($request->all());

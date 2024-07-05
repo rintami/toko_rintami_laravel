@@ -67,12 +67,11 @@
 												('Apakah Anda Yakin Ingin Membatalkan Pesanan Ini?')">Hapus Dari Keranjang</button>
 											</form>
 									</td>
-									<td class="column-7">
-										<a href="{{ route('pesanan.show', $data->id) }}"class="btn btn-success btn-sm">Pesanan</a>
-									</td>
 								</tr>
                                 @endforeach
+
 							</table>
+								<label for="">Total Harga: Rp.{{number_format($totalsemua, 0,',','.')}}</label>
 						</div>
 
 

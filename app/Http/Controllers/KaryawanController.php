@@ -63,8 +63,6 @@ class KaryawanController extends Controller
         ]);
 
 
-        Karyawan::create($request->all());
-
         Alert::success('Sukses!', 'Data Berhasil Di Tambahkan!');
         return redirect()->route('karyawan.index');
     }

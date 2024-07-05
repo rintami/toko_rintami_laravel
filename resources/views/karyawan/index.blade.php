@@ -36,13 +36,9 @@
                 <th class="text-center">No</th>
                 <th class="text-center">Nama</th>
                 <th class="text-center">Jenis Kelamin</th>
-                <th class="text-center">Telepon</th>
                 <th class="text-center">Email</th>
-                <th class="text-center">Alamat</th>
-                <th class="text-center">Kota</th>
                 <th class="text-center">Jabatan</th>
                 <th class="text-center">Gaji</th>
-                <th class="text-center">Password</th>
                 <th class="text-center">Action</th>
               </tr>
             </thead>
@@ -52,13 +48,9 @@
                 <td class="text-center">{{ ++$i }}</td>
                 <td>{{$employee->nama}}</td>
                 <td>{{$employee->jkel}}</td>
-                <td>{{$employee->telepon}}</td>
                 <td>{{$employee->email}}</td>
-                <td>{{$employee->alamat}}</td>
-                <td>{{$employee->kota}}</td>
                 <td>{{$employee->jabatan}}</td>
-                <td>{{$employee->gaji}}</td>
-                <td>{{$employee->pwd}}</td>
+                <td>Rp.{{number_format($employee->gaji, 0,',','.')}}</td>
                 <td class="text-center">
                     <form action="{{ route('karyawan.destroy',$employee->id) }}" method="POST">
                         <a class="btn btn-info btn-sm" href="{{ route('karyawan.show', $employee->id) }}"><i class="fas fa-eye"></i></a>

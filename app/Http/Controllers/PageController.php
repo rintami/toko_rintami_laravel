@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Checkout;
+use App\Models\Keranjang;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,7 @@ class PageController extends Controller
     public function index()
     {
         $user = session::get('email');
-        $jumlahco = Checkout::where('user', $user)->count();
+        $jumlahco = Keranjang::where('user', $user)->count();
 
 
         return view('template.index', compact('jumlahco'));

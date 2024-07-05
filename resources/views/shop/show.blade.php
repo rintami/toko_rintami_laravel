@@ -21,13 +21,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="First slide">
+            <img class="d-block w-100" src="{{asset('gambarproduk/'.$shop->gambar1)}}" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="Second slide">
+            <img class="d-block w-100" src="{{asset('gambarproduk/'.$shop->gambar2)}}" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="{{asset('gambarproduk/'.$data->gambar1)}}" alt="Third slide">
+            <img class="d-block w-100" src="{{asset('gambarproduk/'.$shop->gambar3)}}" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -42,20 +42,20 @@
       </center>
 <br>
 <br>
-    <p class="card-title">Nama Produk : {{$data->namaproduk}}</p>
-    <p class="card-text">Nama Toko : {{$data->namatoko}}</p>
-    <p class="card-text">Kategori : {{$data->keterangan}}</p>
-    <p class="card-text">Stok : {{$data->stok}}</p>
-    <p class="card-text">Harga : {{$data->harga}}</p>
-    <p class="card-text">Daerah : {{$data->daerah}}</p>
-    <p class="card-text">Deskripsi : {{$data->deskripsi}}</p>
+    <p class="card-title">Nama Produk : {{$shop->namaproduk}}</p>
+    <p class="card-text">Nama Toko : {{$shop->namatoko}}</p>
+    <p class="card-text">Kategori : {{$shop->keterangan}}</p>
+    <p class="card-text">Stok : {{$shop->stok}}</p>
+    <p class="card-text">Harga : {{$shop->harga}}</p>
+    <p class="card-text">Daerah : {{$shop->kota}}</p>
+    <p class="card-text">Deskripsi : {{$shop->deskripsi}}</p>
 
     <form class="form-group" action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if(session('failed'))
               <div class="alert alert-danger">{{ session('failed') }}</div>
             @endif
-                <input type="text" class="form-control" name="kodeproduk" value="{{$data->kodeproduk}}" readonly hidden>
+                <input type="text" class="form-control" name="kodeproduk" value="{{$shop->id}}" readonly hidden>
                 <input type="text" class="form-control" name="kodepelanggan" value="{{Session::get('id')}}" readonly hidden>
                 <input type="date" class="form-control" name="tanggal" value="<?php echo date('Y-m-d')?>" readonly hidden>
                 <center>
@@ -81,7 +81,7 @@
                 </table>
                 </center>
                 </div>
-                <input type="number" name="harga" value="{{$data->harga}}" readonly hidden>
+                <input type="number" name="harga" value="{{$shop->harga}}" readonly hidden>
                 <input type="text" name="user" value="{{Session::get('email')}}" readonly hidden>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>

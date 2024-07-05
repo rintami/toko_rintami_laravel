@@ -15,7 +15,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <a href="{{ route('toko.create')}}" class="btn btn-lg btn-primary text-white rounded"><i class="fas fa-plus"></i>Tambah Produk</a>
+        <a href="{{ route('toko.create')}}" class="btn btn-lg btn-primary text-white rounded"><i class="fas fa-plus"></i>Tambah Toko</a>
       </div>
       <div class="card-body">
         @if(session('failed'))
@@ -46,7 +46,7 @@
               @foreach($toko as $store)
               <tr>
                 <td class="text-center">{{ ++$i }}</td>
-                <td>{{$store->nama}}</td>
+                <td>{{$store->namatoko}}</td>
                 <td>{{$store->telepon}}</td>
                 <td>{{$store->email}}</td>
                 <td>{{$store->alamat}}</td>

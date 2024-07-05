@@ -84,20 +84,11 @@
 							<li class="@yield('home')">
 								<a href="/">Home</a>
 							</li>
-							<li class="@yield('about')">
-								<a href="about">About</a>
-							</li>
 							<li class="@yield('shop')">
 								<a href="shop">Shop</a>
 							</li>
 							<li class="@yield('cart')">
 								<a href="cart">Cart</a>
-							</li>
-							<li class="@yield('blog')">
-								<a href="blog">Blog</a>
-							</li>
-							<li class="@yield('contact')">
-								<a href="contact">Contact</a>
 							</li>
 							<li class="@yield('pesanan')">
 								<a href="pesanan">Pesanan</a>
@@ -117,13 +108,13 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{$jumlahco}}">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
+						{{-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{$jumlahco}}">
+							<i class="zmdi zmdi-shopping-cart"><a href="cart"></a></i>
+						</div> --}}
 
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						{{-- <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+						</a> --}}
 					</div>
 				</nav>
 			</div>	

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
-use App\Models\Checkout;
+use App\Models\Keranjang;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,8 +19,8 @@ class HomeController extends Controller
     {
         $produk = Produk::all();   
         $user = session::get('email');
-        $jumlahco = Checkout::where('user', $user)->count();
-        return view('welcome', ['produk' => $produk], compact('produk', 'jumlahco'));
+        $jumlahco = Keranjang::where('user', $user)->count();
+        return view('welcome', ['produk' => $produk], compact('produk'));
     }
 
     /**

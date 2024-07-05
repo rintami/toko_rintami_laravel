@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Checkout;
+use App\Models\Keranjang;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -26,14 +27,15 @@ class PesananController extends Controller
         $pesanan = DB::table('checkouts')
         ->join('produks', 'checkouts.kodeproduk', '=', 'produks.id')
         ->join('pelanggans', 'checkouts.kodepelanggan', '=', 'pelanggans.id')
-        ->select('checkouts.*', 'produks.*', 'pelanggans.*', 'checkouts.status AS statusco', 'produks.id AS idproduk', 'pelanggans.id AS idpelanggan', 'checkouts.id AS idco')
+        ->select('checkouts.*', 'produks.*', 'pelanggans.*', 'checkouts.status AS statusco', 'produks.id AS idproduk', 
+        'pelanggans.id AS idpelanggan', 'checkouts.id AS idco')
         ->where('checkouts.user', $user)
         ->get();
 
         // dd($co);
 
         $user = session::get('email');
-        $jumlahco = Checkout::where('user', $user)->count();
+        $jumlahco = Keranjang::where('user', $user)->count();
 
         return view('pesanan.index', compact('pesanan', 'jumlahco'))->with('i', (request()->input('page', 1) -1) *15);
     }
@@ -104,16 +106,16 @@ class PesananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Produk $produk)
+    public function show($id)
     {
-        $data = DB::table('produks')
+        $pesanan = DB::table('produks')
         ->join('tokos', 'produks.kodetoko', '=', 'tokos.id')
         ->join('kategoris', 'produks.kodekategori', '=', 'kategoris.id')
-        ->select('produks.*', 'tokos.*', 'kategoris.*', 'produks.id AS kodeproduk')
+        ->select('produks.*', 'tokos.namatoko', 'tokos.kota', 'kategoris.keterangan')
+        ->where('produks.id', $id)
         ->first();
-
-        // dd($data);
-        return view('pesanan.show', compact('data'));
+        // dd($barang);
+        return view('pesanan.show', compact('pesanan'));
     }
 
     /**
@@ -145,7 +147,7 @@ class PesananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Produk $produk)
+    public function destroy(Produk $produk, Request $request)
     {
         // $data = Checkout::find($id);
         // $data->delete();
@@ -153,6 +155,7 @@ class PesananController extends Controller
         $id = Checkout::all();
         // DB::table("checkouts")->where("id", $id)->delete();
 
+        $user = session::get('email');
 
         // $id = $request['id'];
         $pesanan = DB::table('checkouts')
@@ -163,6 +166,7 @@ class PesananController extends Controller
         ->where('checkouts.id', $id)
         ->delete();
 
+        $jumlah = $request['jumlah'];
 
         $produk->where('id', $request->kodeproduk)->increment('stok', $jumlah);
         return redirect()->route('pesanan.index')->with('succes', 'Jenis Simpanan berhasil di hapus'); 

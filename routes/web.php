@@ -17,6 +17,7 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\LoginkaryawanController;
 use App\Http\Controllers\CokaryawanController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashController;
 
 
@@ -49,6 +50,7 @@ Route::resource('checkout', CheckoutController::class)->middleware('CekLoginMidd
 Route::resource('detailco', DetailcoController::class)->middleware('CekLoginMiddleware');
 Route::resource('keranjang', KeranjangController::class)->middleware('CekLoginMiddleware');
 Route::resource('shop', ShopController::class)->middleware('CekLoginMiddleware');
+Route::resource('barang', BarangController::class)->middleware('CekLoginMiddleware');
 Route::resource('cart', CartController::class)->middleware('CekLoginMiddleware');
 Route::resource('pesanan', PesananController::class)->middleware('CekLoginMiddleware');
 Route::resource('template', PageController::class)->middleware('CekLoginMiddleware');

@@ -38,7 +38,7 @@ class TokoController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'nama' => 'required',
+            'namatoko' => 'required',
             'telepon' => 'required',
             'email' => 'required',
             'alamat' => 'required',
@@ -83,7 +83,7 @@ class TokoController extends Controller
     public function update(Request $request, Toko $toko)
     {
         $request -> validate([
-            'nama' => 'required',
+            'namatoko' => 'required',
             'telepon' => 'required',
             'email' => 'required',
             'alamat' => 'required',

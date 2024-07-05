@@ -15,11 +15,11 @@
             <li class=@yield('cokaryawan')><a class="nav-link" href="{{ route('cokaryawan.index') }}"><i class="fa fa-credit-card" aria-hidden="true"></i><span>Pesanan Pelanggan</span></a></li>
           </ul>
 
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                 <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                     <i class="fas fa-rocket"></i> Documentation
                 </a>
-            </div>
+            </div> --}}
         </ul>
     </aside>
 </div>

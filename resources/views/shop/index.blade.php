@@ -253,16 +253,16 @@
 			</div>
 
 			<div class="row isotope-grid">
-                @foreach($data as $inidata)
+                @foreach($shop as $inidata)
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="{{asset('gambarproduk/'.$inidata->gambar1)}}" alt="IMG-PRODUCT" style="width: 350; height:350px;">
+							<img src="{{asset('gambarproduk/'.$inidata->gambar1)}}" alt="IMG-PRODUCT" style="width: 350; height:300px;">
 
 							{{-- <a href="{{ route('shop.show', $inidata->id) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"> --}}
 
-							<a href="#" data-id="{{ $inidata->id }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							<a href="#" data-toggle="modal" data-target="#modalnic{{$inidata->id}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
 							</a>
 						</div>
@@ -274,7 +274,7 @@
 								</a>
 
 								<span class="stext-105 cl3">
-									{{$inidata->harga}}
+									Rp.{{number_format($inidata->harga, 0,',','.')}}
 								</span>
 								<span>
 									<table>
@@ -312,8 +312,8 @@
 	</div>
 
     	<!-- Modal1 -->
-	@foreach($data as $inidata)
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+	@foreach($shop as $inidata)
+	<div class="wrap-modal1 js-modal1 modal fade p-t-60 p-b-20" id="modalnic{{$inidata->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
 		<div class="container">
@@ -371,7 +371,7 @@
 							</h4>
 
 							<span class="mtext-106 cl2">
-								{{$inidata->harga}}
+								Rp.{{number_format($inidata->harga, 0,',','.')}}
 							</span>
 
 							<p class="stext-102 cl3 p-t-23">
@@ -379,44 +379,7 @@
 							</p>
 							
 							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
+						
 
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
@@ -432,9 +395,7 @@
 											</div>
 										</div>
 
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
+								
 									</div>
 								</div>	
 							</div>

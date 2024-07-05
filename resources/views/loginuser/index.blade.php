@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - login &amp; signup form with html css &amp; javascript</title>
+  <title>Love-Shop! - Login & Signup</title>
   <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -32,7 +32,7 @@
             <div class="field">
               <input type="password" name="pwd" placeholder="Masukkan Password" required>
             </div>
-            <div class="pass-link"><a href="#">Forgot password?</a></div>
+            <div class="pass-link"><a href="logkaryawan">Admin?</a></div>
             <div class="field btn">
               <div class="btn-layer"></div>
               <input type="submit" value="Login">

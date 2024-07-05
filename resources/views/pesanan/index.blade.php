@@ -69,7 +69,7 @@
 										</div>
 									</td>
 
-									{{-- @if($data->statusco == "Dipesan") --}}
+									{{-- @if($data->statusco == "Dipesan") 
 										<td class="column-8">
 											<form action="{{ route('pesanan.destroy',$data->idco) }}" method="POST">
 												@csrf
@@ -78,7 +78,7 @@
 												('Apakah Anda Yakin Ingin Membatalkan Pesanan Ini?')">Batalkan Pesanan</button>
 											</form>
 										</td>
-									{{-- @endif --}}
+									@endif --}}
 										
 									
 									

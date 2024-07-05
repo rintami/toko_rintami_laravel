@@ -36,8 +36,6 @@
             <thead>
               <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">Kode Produk</th>
-                <th class="text-center">Kode Pelanggan</th>
                 <th class="text-center">Tanggal</th>
                 <th class="text-center">Harga</th>
                 <th class="text-center">Jumlah</th>
@@ -52,8 +50,6 @@
               @foreach($pesanan as $data)
               <tr>
                 <td class="text-center">{{ ++$i }}</td>
-                <td>{{$data->kodeproduk}}</td>
-                <td>{{$data->kodepelanggan}}</td>
                 <td>{{$data->tanggal}}</td>
                 <td>{{$data->harga}}</td>
                 <td>{{$data->jumlah}}</td>
@@ -69,8 +65,6 @@
                         <a class="btn btn-primary btn-sm" href="{{ route('cokaryawan.edit', $data->id) }}"><i class="fas fa-pencil-alt">Setujui Pesanan</i></a>
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
-                    ('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i class="fas fa-trash"></i></button>
                     </form>
                 </td>
               </tr>

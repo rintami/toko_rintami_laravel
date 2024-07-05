@@ -34,8 +34,8 @@
               <div class="col-sm-12 col-md-7">
                 <select class="form-control" name="jkel">
                         <option value="" holder> -- Pilih Jenis Kelamin -- </option>
-                        <option value="Laki-Laki" @if( $karyawan->jenisKelamin == "Laki-Laki") selected @endif>Laki-Laki</option>
-                        <option value="Perempuan" @if( $karyawan->jenisKelamin == "Perempuan") selected @endif>Perempuan</option>
+                        <option value="Laki-Laki" @if( $karyawan->jkel == "Laki-Laki") selected @endif>Laki-Laki</option>
+                        <option value="Perempuan" @if( $karyawan->jkel == "Perempuan") selected @endif>Perempuan</option>
                 </select>
               </div>
             </div>
