@@ -25,73 +25,120 @@
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode Toko</label>
               <div class="col-sm-12 col-md-7">
-                <select class="form-control" name="kodetoko">
+                <select name="kodetoko" class="form-control @error('kodetoko')is-invalid @enderror">
                   @foreach ($toko as $initoko)
-                  <option value="{{ $initoko->kodetoko }}">{{ $initoko->kodetoko}} {{ $initoko->namatoko}}</option>
+                  <option value="{{ $initoko->id }}" @if(old('kodetoko') == $initoko->id) {{ 'selected' }} @endif {{old('kodetoko')}}>
+                    {{ $initoko->id}} {{ $initoko->namatoko}}
+                  </option>
                   @endforeach
                 </select>
+                @error('kodetoko')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode Kategori</label>
               <div class="col-sm-12 col-md-7">
-                <select class="form-control" name="kodekategori">
+                <select name="kodekategori" class="form-control @error('kodekategori')is-invalid @enderror">
                   @foreach ($kategori as $inikategori)
-                  <option value="{{ $inikategori->kodekategori }}">{{ $inikategori->kodekategori}} {{ $inikategori->keterangan}}</option>
+                  <option value="{{ $inikategori->id }}" @if(old('kodekategori') == $initoko->id) {{ 'selected' }} @endif>
+                    {{ $inikategori->id}} {{ $inikategori->keterangan}}
+                  </option>
                   @endforeach
                 </select>
+                @error('kodekategori')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama</label>
               <div class="col-sm-12 col-md-7">
-                <input type="text" class="form-control" name="namaproduk" placeholder="Masukkan Nama">
+                <input type="text" name="namaproduk" 
+                  class="form-control @error('namaproduk')is-invalid @enderror" 
+                  value="{{ old('namaproduk') }}"
+                  placeholder="Masukkan Nama">
+                @error('namaproduk')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Stok</label>
               <div class="col-sm-12 col-md-7">
-                <input type="text" class="form-control" name="stok" placeholder="Masukkan Stok">
+                <input type="text" name="stok"  
+                  class="form-control @error('stok')is-invalid @enderror" 
+                  value="{{ old('stok') }}"
+                  placeholder="Masukkan Stok">
+                @error('stok')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Harga</label>
               <div class="col-sm-12 col-md-7">
-                <input type="text" class="form-control" name="harga" placeholder="Masukkan Harga">
+                <input type="text" name="harga" 
+                  class="form-control @error('harga')is-invalid @enderror" 
+                  value="{{ old('harga') }}"
+                  placeholder="Masukkan Harga">
+                @error('harga')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Daerah</label>
               <div class="col-sm-12 col-md-7">
-                <select class="form-control" name="daerah">
+                <select name="daerah" class="form-control @error('daerah')is-invalid @enderror">
                   @foreach ($toko as $toko)
-                    <option value="{{ $toko->kota }}">{{ $toko->namatoko}} - {{ $toko->kota}}</option>
+                    <option value="{{ $toko->kota }}" @if(old('daerah') == $initoko->kota) {{ 'selected' }} @endif>
+                      {{ $toko->namatoko}} - {{ $toko->kota}}
+                    </option>
                   @endforeach
                 </select>
+                @error('daerah')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
               <div class="col-sm-12 col-md-7">
-                <textarea class="form-control" name="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
+                <textarea name="deskripsi" class="form-control @error('deskripsi')is-invalid @enderror" placeholder="Masukkan Deskripsi">
+                  {{ old('deskripsi') }}
+                </textarea>
+                @error('deskripsi')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar 1</label>
               <div class="col-sm-12 col-md-7">
-                <input type="file" class="form-control" name="gambar1" placeholder="Masukkan Gambar 1">
+                <input type="file" name="gambar1" class="form-control @error('gambar1')is-invalid @enderror" placeholder="Masukkan Gambar 1">
+                @error('gambar1')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar 2</label>
               <div class="col-sm-12 col-md-7">
-                <input type="file" class="form-control" name="gambar2" placeholder="Masukkan Gambar 2">
+                <input type="file" name="gambar2" class="form-control @error('gambar2')is-invalid @enderror" placeholder="Masukkan Gambar 2">
+                @error('gambar2')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar 3</label>
               <div class="col-sm-12 col-md-7">
-                <input type="file" class="form-control" name="gambar3" placeholder="Masukkan Gambar 3">
+                <input type="file" name="gambar3" class="form-control @error('gambar3')is-invalid @enderror" placeholder="Masukkan Gambar 3">
+                @error('gambar3')
+                  <div class="invalid-feedback">{{$message}}</div>
+                @enderror
               </div>
             </div>
             <div class="form-group row mb-4">
