@@ -17,6 +17,16 @@
         <h4>Edit Produk</h4>
       </div>
       <div class="card-body">
+            <!-- Display all errors here -->
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
         <form class="needs-validation" action="{{ route('produk.update', $produk->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -28,7 +38,7 @@
               <div class="col-sm-12 col-md-7">
                 <select class="form-control" name="kodetoko">
                   @foreach ($toko as $initoko)
-                  <option value="{{ $initoko->id }}" @if($initoko->id == $initoko->id) selected @endif>{{$initoko->id}} - {{ $initoko->namatoko}}</option>
+                  <option value="{{ $initoko->id }}" @if($initoko->id == $produk->kodetoko) selected @endif>{{ $initoko->namatoko}}</option>
                   @endforeach
                 </select>
               </div>
@@ -38,7 +48,7 @@
               <div class="col-sm-12 col-md-7">
                 <select class="form-control" name="kodekategori">
                   @foreach ($kategori as $inikategori)
-                  <option value="{{ $inikategori->id }}" @if($inikategori->id == $inikategori->id) selected @endif>{{$initoko->id}}- {{ $inikategori->keterangan}}</option>
+                  <option value="{{ $inikategori->id }}" @if($inikategori->id == $produk->kodekategori) selected @endif>{{ $inikategori->keterangan}}</option>
                   @endforeach
                </select>
               </div>

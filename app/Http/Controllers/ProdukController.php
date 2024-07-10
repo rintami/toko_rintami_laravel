@@ -138,9 +138,9 @@ class ProdukController extends Controller
             'harga' => 'required',
             'daerah' => 'required',
             'deskripsi' => 'required',
-            'gambar1' => 'required|mimes:jpeg,jpg,png,gif',
-            'gambar2' => 'required|mimes:jpeg,jpg,png,gif',
-            'gambar3' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar1' => 'mimes:jpeg,jpg,png,gif',
+            'gambar2' => 'mimes:jpeg,jpg,png,gif',
+            'gambar3' => 'mimes:jpeg,jpg,png,gif',
         ]);
 
         $dataToUpdate = [
@@ -174,8 +174,8 @@ class ProdukController extends Controller
             $gambar3->move('gambarproduk/', $nama3);
             $dataToUpdate['gambar3'] = $nama3;
         }
-
-        $produk->update($dataToUpdate);
+        
+        $produk -> update ($dataToUpdate);
 
         Alert::success('Sukses!', 'Data Berhasil Di Edit!');
         return redirect()->route('produk.index');
