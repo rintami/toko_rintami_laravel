@@ -21,7 +21,7 @@ class CokaryawanController extends Controller
         $pesanan = Checkout::latest()->paginate(15);
         $checkout = Checkout::first();
 
-        return view('cokaryawan.index', compact('pesanan', 'checkout'))->with('i', (request()->input('page', 1) -1) *15);
+        return view('cokaryawan.index', ['checkout' => $cokaryawan], compact('pesanan', 'checkout', 'cokaryawan'))->with('i', (request()->input('page', 1) -1) *15);
     }
 
     /**

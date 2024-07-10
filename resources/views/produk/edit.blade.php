@@ -28,7 +28,7 @@
               <div class="col-sm-12 col-md-7">
                 <select class="form-control" name="kodetoko">
                   @foreach ($toko as $initoko)
-                  <option value="{{ $initoko->kodetoko }}" @if($initoko->kodetoko == $initoko->kodetoko) selected @endif>{{ $initoko->namatoko}}</option>
+                  <option value="{{ $initoko->id }}" @if($initoko->id == $initoko->id) selected @endif>{{$initoko->id}} - {{ $initoko->namatoko}}</option>
                   @endforeach
                 </select>
               </div>
@@ -38,7 +38,7 @@
               <div class="col-sm-12 col-md-7">
                 <select class="form-control" name="kodekategori">
                   @foreach ($kategori as $inikategori)
-                  <option value="{{ $inikategori->kodekategori }}" @if($inikategori->kodekategori == $inikategori->kodekategori) selected @endif>{{ $inikategori->keterangan}}</option>
+                  <option value="{{ $inikategori->id }}" @if($inikategori->id == $inikategori->id) selected @endif>{{$initoko->id}}- {{ $inikategori->keterangan}}</option>
                   @endforeach
                </select>
               </div>
@@ -76,19 +76,19 @@
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar 1</label>
               <div class="col-sm-12 col-md-7">
-                <input type="file" class="form-control" name="gambar1" placeholder="Masukkan Gambar 1" value="{{ $produk->nama1 }}" accept="{{$produk->nama1}}">
+                <input type="file" class="form-control" name="gambar1" placeholder="Masukkan Gambar 1" value="{{ $produk->gambar1 }}" accept="{{$produk->gambar1}}">
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar 2</label>
               <div class="col-sm-12 col-md-7">
-                <input type="file" class="form-control" name="gambar2" placeholder="Masukkan Gambar 2" value="{{ $produk->nama2 }}">
+                <input type="file" class="form-control" name="gambar2" placeholder="Masukkan Gambar 2" value="{{ $produk->gambar2 }}" accept="{{$produk->gambar1}}">
               </div>
             </div>
             <div class="form-group row mb-4">
               <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar 3</label>
               <div class="col-sm-12 col-md-7">
-                <input type="file" class="form-control" name="gambar3" placeholder="Masukkan Gambar 3" value="{{ $produk->nama3 }}">
+                <input type="file" class="form-control" name="gambar3" placeholder="Masukkan Gambar 3" value="{{ $produk->gambar3 }}" accept="{{$produk->gambar1}}">
               </div>
             </div>
             <div class="form-group row mb-4">

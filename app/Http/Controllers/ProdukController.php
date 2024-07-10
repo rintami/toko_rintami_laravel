@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Toko;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -18,8 +19,11 @@ class ProdukController extends Controller
      */
     public function index()
     {
+        $toko = Toko::all();
+        $kategori = Kategori::all();
         $produk = Produk::latest()->paginate(15);
-        return view('produk.index', compact('produk'))->with('i', (request()->input('page', 1) -1) *15);
+        // dd($kategori);
+        return view('produk.index', ['toko' => $toko, 'kategori' => $kategori, 'produk' => $produk], compact('produk', 'toko', 'kategori'))->with('i', (request()->input('page', 1) -1) *15);
     }
 
     /**
@@ -129,7 +133,7 @@ class ProdukController extends Controller
         $request -> validate([
             'kodetoko' => 'required',
             'kodekategori' => 'required',
-            'nama' => 'required',
+            'namaproduk' => 'required',
             'stok' => 'required',
             'harga' => 'required',
             'daerah' => 'required',
@@ -139,26 +143,7 @@ class ProdukController extends Controller
             'gambar3' => 'required|mimes:jpeg,jpg,png,gif',
         ]);
 
-        $gambar1 = $request->file('gambar1');
-        $gambar2 = $request->file('gambar2');
-        $gambar3 = $request->file('gambar3');
-
-        if ($gambar1) {
-            $nama1 = $gambar1->getClientOriginalName();
-            $gambar1->move('gambarproduk/', $nama1);
-        }
-
-        if ($gambar2) {
-            $nama2 = $gambar2->getClientOriginalName();
-            $gambar2->move('gambarproduk/', $nama2);
-        }
-
-        if ($gambar3) {
-            $nama3 = $gambar3->getClientOriginalName();
-            $gambar3->move('gambarproduk/', $nama3);
-        }
-
-        $produk -> update ([
+        $dataToUpdate = [
             'kodetoko' => $request->kodetoko,
             'kodekategori' => $request->kodekategori,
             'namaproduk' => $request->namaproduk,
@@ -166,12 +151,31 @@ class ProdukController extends Controller
             'harga' => $request->harga,
             'daerah' => $request->daerah,
             'deskripsi' => $request->deskripsi,
-            'gambar1' => $nama1,
-            'gambar2' => $nama2,
-            'gambar3' => $nama3
-        ]);
+        ];
 
-        $produk -> update($request->all());
+        $gambar1 = $request->file('gambar1');
+        $gambar2 = $request->file('gambar2');
+        $gambar3 = $request->file('gambar3');
+
+        if ($gambar1) {
+            $nama1 = $gambar1->getClientOriginalName();
+            $gambar1->move('gambarproduk/', $nama1);
+            $dataToUpdate['gambar1'] = $nama1;
+        }
+
+        if ($gambar2) {
+            $nama2 = $gambar2->getClientOriginalName();
+            $gambar2->move('gambarproduk/', $nama2);
+            $dataToUpdate['gambar2'] = $nama2;
+        }
+
+        if ($gambar3) {
+            $nama3 = $gambar3->getClientOriginalName();
+            $gambar3->move('gambarproduk/', $nama3);
+            $dataToUpdate['gambar3'] = $nama3;
+        }
+
+        $produk->update($dataToUpdate);
 
         Alert::success('Sukses!', 'Data Berhasil Di Edit!');
         return redirect()->route('produk.index');
@@ -186,6 +190,18 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         $produk = Produk::find($id);
+        // if(File::exists($produk->gambar1)){
+        //     File::delete($produk->gambar1);
+        // }
+
+        // if(File::exists($produk->gambar2)){
+        //     File::delete($produk->gambar2);
+        // }
+
+        // if(File::exists($produk->gambar3)){
+        //     File::delete($produk->gambar3);
+        // }
+
         $produk -> delete();
 
         Alert::success('Sukses!', 'Data Berhasil Di Hapus!');
