@@ -61,8 +61,8 @@
                 <td>Rp.{{number_format($product->harga, 0,',','.')}}</td>
                 <td class="text-center">
                     <form action="{{ route('produk.destroy',$product->id) }}" method="POST">
-                        <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#showmodal{{$product->id}}"><i class="fas fa-eye"></i></a>
-                        <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#editmodal{{$product->id}}"><i class="fas fa-pencil-alt"></i></a>
+                        <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#showmodal_{{$product->id}}"><i class="fas fa-eye"></i></a>
+                        <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#editmodal_{{$product->id}}"><i class="fas fa-pencil-alt"></i></a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick = "return confirm
@@ -171,9 +171,9 @@
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Daerah</label>
                       <div class="col-sm-12 col-md-7">
                         <select name="daerah" class="form-control @error('daerah')is-invalid @enderror">
-                          @foreach ($toko as $toko)
-                            <option value="{{ $toko->kota }}" @if(old('daerah') == $initoko->kota) {{ 'selected' }} @endif>
-                              {{ $toko->namatoko}} - {{ $toko->kota}}
+                          @foreach ($toko as $initoko)
+                            <option value="{{ $initoko->kota }}" @if(old('daerah') == $initoko->kota) {{ 'selected' }} @endif>
+                              {{ $initoko->namatoko}} - {{ $initoko->kota}}
                             </option>
                           @endforeach
                         </select>
@@ -242,12 +242,12 @@
 
 @foreach($produk as $produk)
 {{-- edit modal --}}
-<div class="modal" tabindex="-1" role="dialog" id="modal">
+<div class="modal" tabindex="-1" role="dialog" id="editmodal_{{ $produk->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Edit Produk</h5>
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal"></button>
       </div>
       <div class="modal-body">
           <div class="row">
@@ -348,7 +348,7 @@
 </div>
 
 {{-- show modal --}}
-<div class="modal" tabindex="-1" role="dialog" id="modal">
+<div class="modal" tabindex="-1" role="dialog" id="showmodal_{{ $produk->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
